@@ -1,14 +1,13 @@
 <script>
     import {deepDescription} from "../store"
-    let disDeep=0;
+
+    
     let disabled=true
     function deepFunc(){
-        if(disDeep==0){
-            disDeep+=1;
+        if(disabled){
             disabled=false;
         }
         else{
-            disDeep-=1;
             disabled=true;
         }
     }
@@ -24,7 +23,7 @@
     <div class="col">
         <div class="mb-3">
             <label for="formTextarea" class="form-label">Djup beskrivning</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" bind:value={$deepDescription} {disabled}></textarea>
+            <textarea class="form-control" id="formTextare" rows="3" bind:value={$deepDescription} {disabled}></textarea>
         </div>
     </div>
 </div>

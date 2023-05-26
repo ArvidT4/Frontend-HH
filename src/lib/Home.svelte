@@ -64,6 +64,9 @@
 
 
 <style>
+  .container{
+    margin-bottom:100px;
+  }
   @font-face{
       font-family: 'Font';
       src: url("LT Staircase.otf");

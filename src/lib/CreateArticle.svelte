@@ -62,16 +62,22 @@
 
         if(title==""){
             titleClass="bg-danger-subtle border-danger-subtle"
+            arr.push({problem:"titel"})
         }
         if(description==""){
-            arr.push({problem:"beskrivning"})
+            descClass="bg-danger-subtle border-danger-subtle"
+            arr.push({problem:"description"})
         }
         if(!img){
             arr.push({problem:"bild"})
         }
+        if(selected==""){
+            categoryClass="bg-danger-subtle border-danger-subtle"
+            arr.push({problem:"category"})
+        }
         if(arr.length==0){
             event.preventDefault();
-            let url = "http://127.0.0.1:5000/addImage"
+            let url = "http://127.0.0.1:5000/addArticle"
             let data = new FormData(event.target)
             data.append('title',title);
             data.append( 'category',selected);
@@ -86,7 +92,7 @@
                 body:data
             })
             const json = await response.json()
-            console.log(json)
+            //console.log(json)
             amount.set([])
             deepDescription.set("")
             articles.update(old=>[...old,json])
@@ -128,7 +134,7 @@
             </div>
 
 
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <div class="btn-group {categoryClass}" role="group" aria-label="Basic radio toggle button group">
                 <input checked={selected==="support"} on:change={onChange} type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="support" />
                 <label class="btn btn-outline-primary" for="btnradio1">Support</label>
 
@@ -144,7 +150,7 @@
         <div class="col">
                 <div class="mb-3">
                     <label for="formTextarea" class="form-label">Beskrivning</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" bind:value={description}></textarea>
+                    <textarea class="form-control {descClass}" id="exampleFormControlTextarea1" rows="3" bind:value={description}></textarea>
                   </div>
         </div>
         </div>
@@ -168,10 +174,6 @@
             </div>
         </div>
         <div class="row">
-            
-            
-            
-            
         </div>
         <div class="row">
             <div class="col-2 kol-2">
